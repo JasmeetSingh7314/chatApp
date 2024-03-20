@@ -22,12 +22,14 @@ function App() {
   console.log(form);
 
   const emitJoin = () => {
-    setToggleChat(true);
-    const data = {
-      name: form.getValues("name"),
-      room: form.getValues("RoomNo"),
-    };
-    socket.emit("join-room", data);
+    if (form.getValues("name") && form.getValues("RoomNo") !== "") {
+      setToggleChat(true);
+      const data = {
+        name: form.getValues("name"),
+        room: form.getValues("RoomNo"),
+      };
+      socket.emit("join-room", data);
+    }
   };
 
   return (
